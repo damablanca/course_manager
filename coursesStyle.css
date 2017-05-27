@@ -1,0 +1,61 @@
+body {
+    background-color: cadetblue;
+    border: solid;
+}
+
+div {
+    border: solid;
+    margin: auto;
+    
+}
+
+#content_one {
+    width:99%;
+    height: 600px;
+    position: relative;
+}
+
+#page_title {
+    text-align: center;
+}
+
+#course_container {
+    float: left; 
+	width: 60%;
+    height: auto;
+    text-align: center;
+}
+
+
+#selected_courses {
+    float: right;
+    width: 39%;
+    height: flex;
+    text-align: center;
+}
+
+#adding_courses {
+    float: left;
+}
+
+
+.courseImageList, .courseInfoList {
+    width : 150px;
+    height : 100px;
+}
+
+.courseImageAlone, .courseInfoAlone {
+    width : 600px;
+    height : auto;
+}
+
+
+.courseDivList {
+    float : left;
+    height : 250;
+}
+
+.courseDivAlone {
+    margin : 0 auto;
+    height : 1000;
+}
