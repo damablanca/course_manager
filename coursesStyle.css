@@ -1,6 +1,7 @@
+/* ------- General -------- */
 body {
     background-color: cadetblue;
-    border: solid;
+    /*border: solid;*/
 }
 
 div {
@@ -9,36 +10,65 @@ div {
     
 }
 
+/* --------- divs ------ */
 #content_one {
-    width:99%;
-    height: 600px;
+    width:69%;
+    height: 550px;
     position: relative;
+    text-align: center;
+    align-self: center;
+    border-color: red;
+    
+    
 }
 
 #page_title {
     text-align: center;
+    border-color: blue;
 }
 
 #course_container {
     float: left; 
-	width: 60%;
+	width: auto;
     height: auto;
     text-align: center;
+    left: 50%;
+    border-color: grey;
 }
 
 
 #selected_courses {
     float: right;
     width: 39%;
-    height: flex;
+    height: 500px;
     text-align: center;
+    border-color: greenyellow;
 }
 
 #adding_courses {
     float: left;
+    border-color: mediumpurple;
 }
 
+#course_list {
+    float: left;
+    height: auto;
+    width: 60%;
+    border-color: aqua;
+}
 
+#study_goal {
+    border-color: darkorange;
+}
+
+#navigator_div {
+    border-color: white;
+}
+
+#mySidenav {
+    border-color: pink;
+}
+/* ----------The popular courses -------- */
 .courseImageList, .courseInfoList {
     width : 150px;
     height : 100px;
@@ -58,4 +88,45 @@ div {
 .courseDivAlone {
     margin : 0 auto;
     height : 1000;
+}
+
+/* --------------Side Nav------------ */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }

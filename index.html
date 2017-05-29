@@ -1,55 +1,129 @@
 <!DOCTYPE html>
+<!-- <html ng-app="goalApp"> -->
 <html>
 <head>
     <title>Courses</title>
     <meta charset="utf-8" />
     <link href="coursesStyle.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js">
+   </script>
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
+    
+    
     
 </head>
 <body>
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
     <!-- The title on the page of the website -->
     <div id ="page_title">
-        <h1>Course management website</h1>
+        <h1>Haaga-Helia Course management</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/fi/thumb/d/db/HAAGA-HELIA_ammattikorkeakoulun_logo.svg/800px-HAAGA-HELIA_ammattikorkeakoulun_logo.svg.png" alt="HH logo" style="width:100px;height50px;">
     </div>
     
-    <!-- The first container -->
+    
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
+    <!-- Navigator on the left side, currently does nothing but we can add navigator / other things to other pages if we want -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Front page</a>
+        <a href="#">Course list</a>
+        <a href="#">Info</a>
+        <a href="#">Other tools</a>
+    </div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Navigator</span>
+    
+    <!-- The first content container -->
     <div id="content_one">
+        
         <!-- Available courses shown to user -->
+        <h2>Most popular courses this semester</h2>
         <div id="course_container">
 
-        </div>
-
-        <!-- Selected courses container -->
-        <div id="selected_courses">
-            <h2>Selected courses:</h2>
-			<ul id="courselist">
-			</ul>
         </div>
         
     </div>
     
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
     <!-- Adding new courses container -->
 	
     <div id="adding_courses">
-	<p>Add a new course:</p>
-	<form method="post">
-		Course name:<br>
-		<input type="text" id="inputName" /><br/>
-		Credits:<br>
-		<input type="number" id="inputCredits" /><br/>
-		Timing:<br>
-		<input type="text" id="inputTiming" /><br/>
-		Language:<br>
-		<input type="text" id="inputLanguage" /><br/>
-		Type:<br>
-		<input type="text" id="inputType" /><br/>
-        <button onclick="displayCourseListOnScreen();">Add course</button>
-	</form>
+        <p>Add a new course:</p>
+        
+            Course name:<br>
+            <input type="text" id="inputCName" /><br/>
+            Credits:<br>
+            <input type="number" id="inputCCredits" /><br/>
+            Timing:<br>
+            <input type="text" id="inputCTiming" /><br/>
+            Language:<br>
+            <input type="text" id="inputCLanguage" /><br/>
+            Type:<br>
+            <input type="text" id="inputCType" /><br/>
+            <button onclick="addCCourseToList();">Add course</button>
+        
 	</div>
     
     
+    
+    <!--/////////////////////////////////////////////////////////////////////////////////////////-->
+    <!-- The study goal list -->
+    <div id="study_goal" ng-app="goalApp">
+        <div ng-controller="GoalListController as goalList">
+          <h2>Keeping track of study goals</h2>
+          <span>{{goalList.remaining()}} of {{goalList.goals.length}} remaining</span>
+          [ <a href="" ng-click="goalList.archive()">Delete done goals</a> ]
+          <ul class="unstyled">
+            <li ng-repeat="goal in goalList.goals">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="goal.done">
+                <span class="done-{{goal.done}}">{{goal.text}}</span>
+              </label>
+            </li>
+          </ul>
+          <form ng-submit="goalList.addGoal()">
+            <input type="text" ng-model="goalList.goalText"  size="30"
+                   placeholder="Add new study goals here">
+            <input class="btn-primary" type="submit" value="add">
+          </form>
+        </div>
+    </div>
+    
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
+    <!-- Container for the getting cordinates button -->
+    <div id="navigator_div">
+        <p>Not sure how far away you are from haaga-helia? Press button below to get your cordinates</p>
+        <button onclick="getLocation()">Get cordinates</button>
+        <p id="location"></p>
+    </div>
+    
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
+    <!-- Showing existing courses -->
+    <div id ="course_list">
+        <h2>Course list</h2>
+        <ul id="courseList"></ul>
+    </div>
+    
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
+    <!-- Showing selected courses -->
+    <div id ="selected_courses">
+        <h2>Selected courses:</h2>
+        <button onclick="addCourseToListSelected()">Add course</button>
+        <ul id="selected_list">
+            <li id="element1">Test one</li>
+        </ul>
+    
+    </div>
+    
+    
+    
     <!-- Running JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="courseJavaScript.js"></script>
+    
 </body>
 
 </html>
