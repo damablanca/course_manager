@@ -1,5 +1,5 @@
+
 body {
-		/*background-color:  #96ff66;    #262626*/
 		background-image: url("./images/background_img1.jpg");
 		background-position: center;
 		background-repeat: no-repeat;
@@ -11,12 +11,24 @@ body {
 }
 
 div {
-	background-color: rgba(230, 230, 255, 0.8); /*#999999 #dcffcc*/
+	background-color: rgba(230, 230, 255, 0.8);
 	padding: 10px;
 }
 
-hr {
-	
+button {
+	font-family: "Tahoma", Geneva, sans-serif;
+	padding: 5px;
+}
+
+input {
+	font-family: "Tahoma", Geneva, sans-serif;
+	padding: 5px;
+}
+
+footer {
+	background-color: rgba(230, 230, 255, 0.8);
+	padding: 10px;
+	text-align: center;	
 }
 
 /*---------Header-------------*/
@@ -45,6 +57,7 @@ img {
 
 .courseDivList {
 	display: inline;
+	background-color: rgba(230, 230, 255, 0);
 }
 
 .courseImageList {
@@ -53,6 +66,10 @@ img {
 .courseImageAlone {
 	max-width: 40%;
 	max-height: auto;
+}
+
+#course_container {
+	background-color: rgba(230, 230, 255, 0);
 }
 
 /*-------------Course list------------*/
@@ -65,6 +82,7 @@ img {
 #course_list {
 	float: left;
 	width: 50%;
+	background-color: rgba(230, 230, 255, 0);
 }
 
 #courseList {
@@ -76,6 +94,7 @@ img {
 #selected_courses {
 	float: right;
 	width: 50%;
+	background-color: rgba(230, 230, 255, 0);
 }
 
 #selected_list {
@@ -92,6 +111,7 @@ img {
 #adding_courses {
 	float: left;
 	width: 50%;
+	background-color: rgba(230, 230, 255, 0);
 }
 
 /*-----------Study goals--------------*/
@@ -99,17 +119,19 @@ img {
 #study_goal {
 	float: right;
 	width: 50%;
+	background-color: rgba(230, 230, 255, 0);
 }
 
 .unstyled {
 	list-style-type: none;
 }
 
+.ng-scope {
+	background-color: rgba(230, 230, 255, 0);
+}
+
 /*----------Coordinates----------------*/
 
-#navigator_div {
-	display: ;
-}
 
 /* --------------Side Nav------------ #333333*/
 
