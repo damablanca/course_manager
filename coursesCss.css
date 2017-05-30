@@ -1,0 +1,154 @@
+body {
+		/*background-color:  #96ff66;    #262626*/
+		background-image: url("./images/background_img1.jpg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		margin-left: 10%;
+		margin-right: 10%;
+		font-family: "Tahoma", Geneva, sans-serif;
+		color: #111111;
+}
+
+div {
+	background-color: rgba(230, 230, 255, 0.8); /*#999999 #dcffcc*/
+	padding: 10px;
+}
+
+hr {
+	
+}
+
+/*---------Header-------------*/
+
+#page_title {
+	text-align: center;
+}
+
+#logo {
+	height: auto;
+	width: 40%;
+	border-radius: 0;
+}
+
+/*------------Popular courses------------*/
+
+img {
+	max-height: 20%;
+	max-width: 20%;
+	border-radius: 10%;
+}
+
+.courseInfoList {
+	display: inline;
+}
+
+.courseDivList {
+	display: inline;
+}
+
+.courseImageList {
+}
+
+.courseImageAlone {
+	max-width: 40%;
+	max-height: auto;
+}
+
+/*-------------Course list------------*/
+
+#combined {
+	display: inline-flex;
+	width: 98%;
+}
+
+#course_list {
+	float: left;
+	width: 50%;
+}
+
+#courseList {
+	list-style-type: none;
+}
+
+/*-------------Selected courses---------*/
+
+#selected_courses {
+	float: right;
+	width: 50%;
+}
+
+#selected_list {
+	list-style-type: none;
+}
+
+/*-----------Adding courses------------*/
+
+#course_goal_container {
+	display: inline-flex;
+	width: 98%;
+}
+
+#adding_courses {
+	float: left;
+	width: 50%;
+}
+
+/*-----------Study goals--------------*/
+
+#study_goal {
+	float: right;
+	width: 50%;
+}
+
+.unstyled {
+	list-style-type: none;
+}
+
+/*----------Coordinates----------------*/
+
+#navigator_div {
+	display: ;
+}
+
+/* --------------Side Nav------------ #333333*/
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+	margin: 0;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

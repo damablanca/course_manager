@@ -4,7 +4,7 @@
 <head>
     <title>Courses</title>
     <meta charset="utf-8" />
-    <link href="coursesStyle.css" rel="stylesheet" />
+    <link href="coursesCss.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.min.js">
     </script>
@@ -20,11 +20,11 @@
     <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
     <!-- The title on the page of the website -->
     <div id ="page_title">
-        <h1>Haaga-Helia Course management</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/fi/thumb/d/db/HAAGA-HELIA_ammattikorkeakoulun_logo.svg/800px-HAAGA-HELIA_ammattikorkeakoulun_logo.svg.png" alt="HH logo" style="width:100px;height50px;">
+        <h1>Haaga-Helia Course Management</h1>
+        <img id="logo" src="https://upload.wikimedia.org/wikipedia/fi/thumb/d/db/HAAGA-HELIA_ammattikorkeakoulun_logo.svg/800px-HAAGA-HELIA_ammattikorkeakoulun_logo.svg.png" alt="HH logo">
     </div>
     
-    
+    <hr>
     <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
     <!-- Navigator on the left side, currently does nothing but we can add navigator / other things to other pages if we want -->
     <div id="mySidenav" class="sidenav">
@@ -36,6 +36,7 @@
     </div>
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Navigator</span>
     
+	<hr />
     <!-- The first content container -->
     <div id="content_one">
         
@@ -49,74 +50,78 @@
     
     <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
     <!-- Adding new courses container -->
-	
-    <div id="adding_courses">
-        <p>Add a new course:</p>
-        
-            Course name:<br>
-            <input type="text" id="inputCName" /><br/>
-            Credits:<br>
-            <input type="number" id="inputCCredits" /><br/>
-            Timing:<br>
-            <input type="text" id="inputCTiming" /><br/>
-            Language:<br>
-            <input type="text" id="inputCLanguage" /><br/>
-            Type:<br>
-            <input type="text" id="inputCType" /><br/>
-            <button onclick="addCCourseToList();">Add course</button>
-        
+	<hr />
+	<div id=course_goal_container>
+		<div id="adding_courses">
+			<h2>Add a new course:</h2>
+			
+				Course name:<br>
+				<input type="text" id="inputCName" /><br/>
+				Credits:<br>
+				<input type="number" id="inputCCredits" /><br/>
+				Timing:<br>
+				<input type="text" id="inputCTiming" /><br/>
+				Language:<br>
+				<input type="text" id="inputCLanguage" /><br/>
+				Type:<br>
+				<input type="text" id="inputCType" /><br/>
+				<br/>
+				<button onclick="addCCourseToList();">Add course</button>
+		</div>
+		<!-- ///////////////////////////////////////////////////////////////////////////////////////-->
+		<!-- The study goal list -->
+		<div id="study_goal" ng-app="goalApp">
+			<div ng-controller="GoalListController as goalList">
+			  <h2>Keeping track of study goals</h2>
+			  <span>{{goalList.remaining()}} of {{goalList.goals.length}} remaining</span>
+			  [ <a href="" ng-click="goalList.archive()">Delete done goals</a> ]
+			  <ul class="unstyled">
+				<li ng-repeat="goal in goalList.goals">
+				  <label class="checkbox">
+					<input type="checkbox" ng-model="goal.done">
+					<span class="done-{{goal.done}}">{{goal.text}}</span>
+				  </label>
+				</li>
+			  </ul>
+			  <form ng-submit="goalList.addGoal()">
+				<input type="text" ng-model="goalList.goalText"  size="30"
+					   placeholder="Add new study goals here">
+				<input class="btn-primary" type="submit" value="add">
+			  </form>
+			</div>
+		</div>
 	</div>
-    
-    
-    
-    <!--/////////////////////////////////////////////////////////////////////////////////////////-->
-    <!-- The study goal list -->
-    <div id="study_goal" ng-app="goalApp">
-        <div ng-controller="GoalListController as goalList">
-          <h2>Keeping track of study goals</h2>
-          <span>{{goalList.remaining()}} of {{goalList.goals.length}} remaining</span>
-          [ <a href="" ng-click="goalList.archive()">Delete done goals</a> ]
-          <ul class="unstyled">
-            <li ng-repeat="goal in goalList.goals">
-              <label class="checkbox">
-                <input type="checkbox" ng-model="goal.done">
-                <span class="done-{{goal.done}}">{{goal.text}}</span>
-              </label>
-            </li>
-          </ul>
-          <form ng-submit="goalList.addGoal()">
-            <input type="text" ng-model="goalList.goalText"  size="30"
-                   placeholder="Add new study goals here">
-            <input class="btn-primary" type="submit" value="add">
-          </form>
-        </div>
-    </div>
-    
-    <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
-    <!-- Container for the getting cordinates button -->
-    <div id="navigator_div">
-        <p>Not sure how far away you are from haaga-helia? Press button below to get your cordinates</p>
-        <button onclick="getLocation()">Get cordinates</button>
-        <p id="location"></p>
-    </div>
-    
+	<hr />
+		<!-- ///////////////////////////////////////////////////////////////////////////////////////-->
+		<!-- Container for the getting cordinates button -->
+		<div id="navigator_div">
+		<h2>Geolocation</h2>
+			<p>Not sure how far away you are from haaga-helia? Press button below to get your cordinates.</p>
+			<button onclick="getLocation()">Get cordinates</button>
+			<p id="location"></p>
+		</div>
+    <hr />
+	
+
     <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
     <!-- Showing existing courses -->
-    <div id ="course_list">
-        <h2>Course list</h2>
-        <ul id="courseList"></ul>
-    </div>
-    
-    <!-- ///////////////////////////////////////////////////////////////////////////////////////-->
-    <!-- Showing selected courses -->
-    <div id ="selected_courses">
-        <h2>Selected courses:</h2>
-        <button onclick="addCourseToListSelected()">Add course</button>
-        <ul id="selected_list">
-            <li id="element1">Test one</li>
-        </ul>
-    
-    </div>
+	<div id="combined">
+		<div id ="course_list">
+			<h2>Course list</h2>
+			<ul id="courseList"></ul>
+		</div>
+		
+		<!-- ///////////////////////////////////////////////////////////////////////////////////////-->
+		<!-- Showing selected courses -->
+		<div id ="selected_courses">
+			<h2>Selected courses:</h2>
+			<button onclick="addCourseToListSelected()">Add course</button>
+			<ul id="selected_list">
+				<li id="element1">Test one</li>
+			</ul>
+		
+		</div>
+	</div>
     
     
     

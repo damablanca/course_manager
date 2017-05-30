@@ -2,11 +2,11 @@
 // Creating JSON for the courses which already exist when user logs in
 // For the images I used googles "Saa käyttää uudelleen ja muokata" search option in order to not use copyrighted photos
 
-var JSONtext = '[{"courseName":"Mobile programming","Credits":"5","Timing":"4th semester","Language":"English","Type":"Compulsory","imageName":"https://static.pexels.com/photos/270557/pexels-photo-270557.jpeg"}'
+/*var JSONtext = '[{"courseName":"Mobile programming","Credits":"5","Timing":"4th semester","Language":"English","Type":"Compulsory","imageName":"https://static.pexels.com/photos/270557/pexels-photo-270557.jpeg"}'
 + ',{"courseName":"Server Technologies","Credits":"5","Timing":"3rd semester","Language":"English","Type":"Compulsory","imageName":"https://upload.wikimedia.org/wikipedia/commons/e/e0/A_view_of_the_server_room_at_The_National_Archives.jpg"}'
 + ',{"courseName":"Finnish for beginners","Credits":"3","Timing":"2nd semester","Language":"Finnish","Type":"Compulsory","imageName":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Finland.svg/2000px-Flag_of_Finland.svg.png"}'
 + ',{"courseName":"3D printing","Credits":"5","Timing":"none","Language":"English","Type":"Optional","imageName":"https://upload.wikimedia.org/wikipedia/commons/b/b8/Felix_3D_Printer_-_Printing_Head.JPG"}]';
-
+*/
 
 //////////////////////////////////////////////////////////////////////////////
 // ----- Showing courses on html page (homePage.html) (the courses with pictures above them)
@@ -15,32 +15,69 @@ var a;
 var courses;
 
 function listCoursesOnPage() {
-    courses = JSON.parse(JSONtext);
-    
-    var containerElement = document.getElementById("course_container");
-    containerElement.innerHTML = "";
-    
-    for (i = 0; i < courses.length; i++) {
-        
-        var divElement = document.createElement("div");
-        var imgElement = document.createElement("img");
-        var pElement = document.createElement("p");
-        
-        imgElement.setAttribute("src", courses[i].imageName);
-        imgElement.setAttribute("class", "courseImageList");
-        divElement.appendChild(imgElement);
-        
-        pElement.innerHTML = courses[i].courseName + ", Credits: " + courses[i].Credits;
-        pElement.setAttribute("class", "courseInfoList");
-        divElement.appendChild(pElement);
-        
-        divElement.setAttribute("class", "courseDivList");
-        divElement.setAttribute("onclick", "showOnlyThisCourseWithBiggerImage(" + i + ");");
-        containerElement.appendChild(divElement);
-        
-        
+    "use strict";
+	 var JSONfile = "http://proto451.haaga-helia.fi/5575/courses";
+	
+    var http_request = new XMLHttpRequest();
+
+
+    try {
+        // Opera 8.0+, Firefox, Chrome, Safari
+        http_request = new XMLHttpRequest();
+    } catch (ex1) {
+        // Internet Explorer Browsers
+        try {
+            http_request = new ActiveXObject("Msxml2.XMLHTTP");
+
+        } catch (ex2) {
+
+            try {
+                http_request = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (ex3) {
+                // Something went wrong
+                alert("Your browser broke!");
+                return false;
+            }
+
+        }
     }
+	
+	 http_request.onreadystatechange = function () {
+        if (http_request.readyState === 4) {
+			
+			courses = JSON.parse(http_request.responseText);
+    
+			var containerElement = document.getElementById("course_container");
+			containerElement.innerHTML = "";
+		
+			for (i = 0; i < courses.length; i++) {
+				
+				var divElement = document.createElement("div");
+				var imgElement = document.createElement("img");
+				var pElement = document.createElement("p");
+				
+				imgElement.setAttribute("src", courses[i].imageName);
+				imgElement.setAttribute("class", "courseImageList");
+				divElement.appendChild(imgElement);
+				
+				pElement.innerHTML = courses[i].courseName + ", Credits: " + courses[i].credits;
+				pElement.setAttribute("class", "courseInfoList");
+				divElement.appendChild(pElement);
+				
+				divElement.setAttribute("class", "courseDivList");
+				divElement.setAttribute("onclick", "showOnlyThisCourseWithBiggerImage(" + i + ");");
+				containerElement.appendChild(divElement);
+				
+			}   
+		}
+	};
+http_request.open("GET", JSONfile, true);
+    http_request.send();
 }
+
+//calling the method
+listCoursesOnPage();
+
 //////////////////////////////////////////////////////////////////////////////
 // ------ Showing course image as bigger and more info on course
 
